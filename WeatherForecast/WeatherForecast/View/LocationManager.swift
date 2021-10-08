@@ -11,7 +11,6 @@ import CoreLocation
 class LocationManager: CLLocationManager {
     func askUserLocation() {
         self.requestWhenInUseAuthorization()
-        self.requestLocation()
         self.desiredAccuracy = kCLLocationAccuracyThreeKilometers
     }
 }

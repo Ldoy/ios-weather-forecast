@@ -10,7 +10,21 @@ import CoreLocation
 final class ViewController: UIViewController {
     private let locationManager = LocationManager()
     lazy var session = URLSession(configuration: .default, delegate: self, delegateQueue: nil)
-    var data: FiveDaysForecast?
+    var data: Data?
+    
+    @IBAction func decodeData() {
+        do {
+            guard let data = self.data else {
+                print("self.data 가 없음")
+                return
+            }
+            let decoded = try Parser().decode(data, to: FiveDaysForecast.self)
+            print(decoded)
+        } catch {
+            print(error)
+        }
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +39,7 @@ extension ViewController: CLLocationManagerDelegate {
         
         guard let longitude = manager.location?.coordinate.longitude,
               let latitude = manager.location?.coordinate.latitude,
-              let fiveDaysUrl = URL(string: "http://api.openweathermap.org/data/2.5/forecast") else  {
+              let fiveDaysUrl = URL(string: "https://api.openweathermap.org/data/2.5/forecast") else  {
             return
         }
         
@@ -46,8 +60,10 @@ extension ViewController: CLLocationManagerDelegate {
             showAlert()
             break
         case .authorizedWhenInUse:
+            locationManager.requestLocation()
             break
         case .authorizedAlways:
+            locationManager.requestLocation()
             break
         case .notDetermined:
             break
@@ -55,18 +71,22 @@ extension ViewController: CLLocationManagerDelegate {
     }
     
     private func showAlert() {
-        let alert = UIAlertController(title: "경고", message: "위치를 찾을 수 없습니다.", preferredStyle: .alert)
-        let alertAction = UIAlertAction(title: "Test", style: .default, handler: nil)
-        alert.addAction(alertAction)
-        self.present(alert, animated: true, completion: nil)
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: "경고", message: "위치를 찾을 수 없습니다.", preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: "Test", style: .default, handler: nil)
+            alert.addAction(alertAction)
+            self.present(alert, animated: true, completion: nil)
+        }
     }
 }
 
 extension ViewController: URLSessionDataDelegate {
     func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
         do {
-            let decodedData = try JSONDecoder().decode(FiveDaysForecast.self, from: data)
-            self.data = decodedData
+           // let decodedData = try JSONDecoder().decode(FiveDaysForecast.self, from: data)
+            // self.data = data : 이렇게 하면 json crrupted 가 되었다고 나옵니다. 
+            self.data?.append(data)
+            print(String(decoding: data, as: UTF8.self))
         } catch {
             showAlert()
         }
