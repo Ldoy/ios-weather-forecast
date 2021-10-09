@@ -10,16 +10,16 @@ import CoreLocation
 final class ViewController: UIViewController {
     private let locationManager = LocationManager()
     lazy var session = URLSession(configuration: .default, delegate: self, delegateQueue: nil)
-    var data: Data?
+    var data: Data = Data()
     
     @IBAction func decodeData() {
         do {
-            guard let data = self.data else {
-                print("self.data 가 없음")
-                return
-            }
-            let decoded = try Parser().decode(data, to: FiveDaysForecast.self)
-            print(decoded)
+//            guard let data = self.data else {
+//                print("self.data 가 없음")
+//                return
+//            }
+            let decoded = try Parser().decode(self.data, to: FiveDaysForecast.self)
+            print(decoded, "🌟")
         } catch {
             print(error)
         }
@@ -84,8 +84,8 @@ extension ViewController: URLSessionDataDelegate {
     func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
         do {
            // let decodedData = try JSONDecoder().decode(FiveDaysForecast.self, from: data)
-            // self.data = data : 이렇게 하면 json crrupted 가 되었다고 나옵니다. 
-            self.data?.append(data)
+            // self.data = data : 이렇게 하면 json crrupted 가 되었다고 나옵니다.
+            self.data.append(data)
             print(String(decoding: data, as: UTF8.self))
         } catch {
             showAlert()
