@@ -6,8 +6,11 @@
 //
 
 import Foundation
-typealias Parameters = [String: Any]
+typealias QueryParameters = [String: Any]
+typealias URLPathParameters = [String]
 
 enum HTTPTask {
-    case request(withUrlParameters: Parameters)
+    case request(withPathComponents: URLPathParameters)
+    case request(withURLQueryItems: QueryParameters,
+                 withPathComponents: URLPathParameters)
 }

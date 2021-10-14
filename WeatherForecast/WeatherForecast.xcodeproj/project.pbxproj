@@ -16,7 +16,7 @@
 		A84D476027031FBA002C1324 /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84D475F27031FBA002C1324 /* EndPoint.swift */; };
 		A84D47622703201E002C1324 /* HTTPTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84D47612703201E002C1324 /* HTTPTask.swift */; };
 		A84D476427032596002C1324 /* NetworkRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84D476327032596002C1324 /* NetworkRouter.swift */; };
-		A8570E6C271687DD00C2EF01 /* URLPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8570E6B271687DD00C2EF01 /* URLPath.swift */; };
+		A8570E6C271687DD00C2EF01 /* URLPathOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8570E6B271687DD00C2EF01 /* URLPathOptions.swift */; };
 		A8570E6E2716887C00C2EF01 /* OpenWeatherSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8570E6D2716887C00C2EF01 /* OpenWeatherSessionDelegate.swift */; };
 		A8570E742717ABC300C2EF01 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8570E732717ABC300C2EF01 /* Extension.swift */; };
 		A8570E762717C0E300C2EF01 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8570E752717C0E300C2EF01 /* ImageLoader.swift */; };
@@ -60,7 +60,7 @@
 		A84D475F27031FBA002C1324 /* EndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
 		A84D47612703201E002C1324 /* HTTPTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPTask.swift; sourceTree = "<group>"; };
 		A84D476327032596002C1324 /* NetworkRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRouter.swift; sourceTree = "<group>"; };
-		A8570E6B271687DD00C2EF01 /* URLPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLPath.swift; sourceTree = "<group>"; };
+		A8570E6B271687DD00C2EF01 /* URLPathOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLPathOptions.swift; sourceTree = "<group>"; };
 		A8570E6D2716887C00C2EF01 /* OpenWeatherSessionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenWeatherSessionDelegate.swift; sourceTree = "<group>"; };
 		A8570E732717ABC300C2EF01 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		A8570E752717C0E300C2EF01 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
@@ -185,9 +185,9 @@
 			isa = PBXGroup;
 			children = (
 				A84D475F27031FBA002C1324 /* EndPoint.swift */,
-				A8570E6B271687DD00C2EF01 /* URLPath.swift */,
-				A84D475D27031F09002C1324 /* HTTPMethod.swift */,
+				A8570E6B271687DD00C2EF01 /* URLPathOptions.swift */,
 				A84D47612703201E002C1324 /* HTTPTask.swift */,
+				A84D475D27031F09002C1324 /* HTTPMethod.swift */,
 				A84D476327032596002C1324 /* NetworkRouter.swift */,
 			);
 			path = Router;
@@ -410,7 +410,7 @@
 				A84D475A270315A9002C1324 /* WeatherNetworkManager.swift in Sources */,
 				C79C8CF425ADDDF200EEE3F1 /* AppDelegate.swift in Sources */,
 				A84D475E27031F09002C1324 /* HTTPMethod.swift in Sources */,
-				A8570E6C271687DD00C2EF01 /* URLPath.swift in Sources */,
+				A8570E6C271687DD00C2EF01 /* URLPathOptions.swift in Sources */,
 				A8570E762717C0E300C2EF01 /* ImageLoader.swift in Sources */,
 				A8570E742717ABC300C2EF01 /* Extension.swift in Sources */,
 				435D6426270C151F008BE703 /* LocationManager.swift in Sources */,

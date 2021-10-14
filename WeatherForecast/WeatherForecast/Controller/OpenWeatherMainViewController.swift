@@ -56,13 +56,15 @@ extension OpenWeatherMainViewController: CLLocationManagerDelegate {
               let longitude = locations.last?.coordinate.longitude else {
             return
         }
+        
         let sessionDelegate = OpenWeatherSessionDelegate()
         let networkManager = WeatherNetworkManager()
         
         guard let api = networkManager.buildApi(weatherOrCurrent: .forecast, location: (latitude, longitude)) else {
             return
         }
-
+        // 위치정보 넣으면 바로 만들 수 있도록 ???
+        
         networkManager.fetchOpenWeatherData(requiredApi: api, sessionDelegate.session)
     }
     
@@ -80,13 +82,13 @@ extension OpenWeatherMainViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         switch status {
         case .restricted, .denied:
-            showAlert(title: "❌", message: "날씨 정보를 사용 할 수 없습니다.")
+            showAlert(title: "🥲", message: "날씨 정보를 사용 할 수 없습니다.")
             break
         case .authorizedWhenInUse, .authorizedAlways, .notDetermined:
             manager.requestLocation()
             break
         @unknown default:
-            showAlert(title: "🌟", message: "애플이 새로운 정보를 추가했군요! 확인 해 봅시다😄")
+            showAlert(title: "🥳", message: "애플이 새로운 정보를 추가했군요! 확인 해 봅시다😄")
         }
     }
 }

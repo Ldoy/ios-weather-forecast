@@ -31,7 +31,7 @@ final class OpenWeatherSessionDelegate: NSObject, URLSessionDataDelegate {
         let pathCompnent = dataTask.currentRequest?.url?.pathComponents.last
         
         if let pathComponent = pathCompnent,
-           let path = URLPath(rawValue: pathComponent) {
+           let path = URLPathOptions(rawValue: pathComponent) {
             WeatherDataHolder.shared.generate(path, requestData)
             session.finishTasksAndInvalidate()
             NotificationCenter.default.post(name: .reloadTableView, object: nil)
@@ -50,7 +50,7 @@ class WeatherDataHolder {
     private init() {
     }
     
-    func generate(_ path: URLPath, _ data: Data) {
+    func generate(_ path: URLPathOptions, _ data: Data) {
         switch path {
         case .forecast:
             do {

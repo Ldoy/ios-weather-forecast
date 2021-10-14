@@ -7,23 +7,83 @@
 
 import Foundation
 
-struct URLManager: RequestConfigurable {
-    static func configure(urlRequest: inout URLRequest, with parameter: Parameters) throws {
+class URLManager {
+    
+    static func configure(urlRequest: inout URLRequest,
+                          with urlQueryItems: QueryParameters?,
+                          and pathComponents: URLPathParameters?) throws {
         guard let url = urlRequest.url else {
-            throw NetworkError.urlMissing
+            throw OpenWeatherError.urlInvalid
+        }
+       
+        guard var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false) else {
+            return
         }
         
-        if var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false),
-           !parameter.isEmpty {
-            urlComponents.queryItems = [URLQueryItem]()
-            
-            for (key, value) in parameter {
-                let queryItem = URLQueryItem(name: key, value: "\(value)")
-                urlComponents.queryItems?.append(queryItem)
-            }
-            
-            urlRequest.url = urlComponents.url
+        insert(pathComponents: pathComponents, to: &urlComponents)
+        insert(queryItems: urlQueryItems, to: &urlComponents)
+        urlRequest.url = urlComponents.url
+    }
+    
+    static private func insert(queryItems: QueryParameters?,
+                               to urlComponents: inout URLComponents) {
+        guard let queryItems = queryItems else {
+            return
+        }
+        
+        for (key, value) in queryItems {
+            let queryItem = URLQueryItem(name: key, value: "\(value)")
+            urlComponents.queryItems?.append(queryItem)
         }
     }
+    
+    static private func insert(pathComponents: URLPathParameters?,
+                               to urlComponents: inout URLComponents) {
+        guard let pathComponents = pathComponents else {
+            return
+        }
+        
+        for key in pathComponents {
+            urlComponents.path.append(key)
+        }
+    }
+//    static func configure(urlRequest: inout URLRequest,
+//                          with urlQueryItems: Parameters?,
+//                          and pathComponents: URLPathParameters?) throws {
+//        guard let url = urlRequest.url else {
+//            throw OpenWeatherError.urlInvalid
+//        }
+//
+//        guard var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false) else {
+//            return
+//        }
+//
+//        insert(pathComponents: pathComponents, to: &urlComponents)
+//        insert(queryItems: urlQueryItems, to: &urlComponents)
+//        urlRequest.url = urlComponents.url
+//    }
+//
+//    static private func insert(queryItems: Parameters?,
+//                               to urlComponents: inout URLComponents) {
+//        guard let queryItems = queryItems else {
+//            return
+//        }
+//
+//        for (key, value) in queryItems {
+//            let queryItem = URLQueryItem(name: key, value: "\(value)")
+//            urlComponents.queryItems?.append(queryItem)
+//        }
+//    }
+//
+//    static private func insert(pathComponents: URLPathParameters?,
+//                               to urlComponents: inout URLComponents) {
+//        guard let pathComponents = pathComponents else {
+//            return
+//        }
+//
+//        for key in pathComponents {
+//            urlComponents.path.append(key)
+//        }
+//    }
 }
 
