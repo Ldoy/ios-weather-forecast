@@ -7,16 +7,16 @@
 
 import UIKit
 
-enum UserState {
-    case able
-    case disable
+enum LocationDataState {
+    case fetchable
+    case disFetchable
     
     var buttonTitle: String {
         switch self {
-        case .able:
-            return "위치변경"
-        case .disable:
+        case .fetchable:
             return "위치설정"
+        case .disFetchable:
+            return "위치변경"
         }
     }
 }

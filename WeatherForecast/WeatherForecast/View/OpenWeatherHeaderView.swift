@@ -151,6 +151,7 @@ extension OpenWeatherHeaderView {
     private func drawButtonView() {
         let buttonWidth = (self.contentView.frame.size.width / 5) * 4
         let buttonHeight = buttonWidth / 10
-        buttonvc.view.frame = CGRect(x: 320, y: 50, width: buttonWidth, height: buttonHeight)
+        buttonvc.view.frame = CGRect(x: 320, y: 50,
+                                     width: buttonWidth, height: buttonHeight)
     }
 }

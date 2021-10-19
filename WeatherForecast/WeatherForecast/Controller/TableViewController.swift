@@ -46,6 +46,7 @@ extension TableViewController {
         self.tableView.frame = self.view.bounds
         self.tableView.register(FiveDaysForecastCell.self,
                                 forCellReuseIdentifier: "weatherCell")
+        
         self.tableView.register(OpenWeatherHeaderView.self,
                                 forHeaderFooterViewReuseIdentifier: "weatherHeaderView")
         let iconSize = 50

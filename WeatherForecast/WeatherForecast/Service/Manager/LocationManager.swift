@@ -8,8 +8,6 @@
 import CoreLocation.CLLocationManager
 
 class LocationManager: CLLocationManager {
-    var userState = UserState.able
-    
     func askUserLocation() {
         self.requestWhenInUseAuthorization()
     }

@@ -5,7 +5,7 @@
 //  Created by Do Yi Lee on 2021/10/15.
 //
 
-import UIKit
+import UIKit.UITableViewController
 import CoreLocation.CLLocationManager
 
 class WeatherTableViewDelegate: NSObject, UITableViewDelegate {

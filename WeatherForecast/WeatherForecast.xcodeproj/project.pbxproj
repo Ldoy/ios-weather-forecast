@@ -23,7 +23,7 @@
 		A86E0D0927145B5400822E96 /* FiveDaysForecastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86E0D0827145B5400822E96 /* FiveDaysForecastCell.swift */; };
 		A86E0D0D2714723200822E96 /* WeatherTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86E0D0C2714723100822E96 /* WeatherTableViewDataSource.swift */; };
 		A8FB2DE7271D08D0009967E2 /* TemperatureConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FB2DE6271D08D0009967E2 /* TemperatureConverter.swift */; };
-		A8FB2E1C271E836B009967E2 /* UserState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FB2E1B271E836B009967E2 /* UserState.swift */; };
+		A8FB2E1C271E836B009967E2 /* LocationDataState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FB2E1B271E836B009967E2 /* LocationDataState.swift */; };
 		A8FB2E1E271E904F009967E2 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FB2E1D271E904F009967E2 /* TableViewController.swift */; };
 		A8FB2E20271E93D5009967E2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FB2E1F271E93D5009967E2 /* ViewController.swift */; };
 		A8FB2E22271E940D009967E2 /* Notification.Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FB2E21271E940D009967E2 /* Notification.Name.swift */; };
@@ -74,7 +74,7 @@
 		A86E0D0827145B5400822E96 /* FiveDaysForecastCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiveDaysForecastCell.swift; sourceTree = "<group>"; };
 		A86E0D0C2714723100822E96 /* WeatherTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTableViewDataSource.swift; sourceTree = "<group>"; };
 		A8FB2DE6271D08D0009967E2 /* TemperatureConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureConverter.swift; sourceTree = "<group>"; };
-		A8FB2E1B271E836B009967E2 /* UserState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserState.swift; sourceTree = "<group>"; };
+		A8FB2E1B271E836B009967E2 /* LocationDataState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDataState.swift; sourceTree = "<group>"; };
 		A8FB2E1D271E904F009967E2 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		A8FB2E1F271E93D5009967E2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A8FB2E21271E940D009967E2 /* Notification.Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.Name.swift; sourceTree = "<group>"; };
@@ -155,6 +155,8 @@
 			isa = PBXGroup;
 			children = (
 				A84D4759270315A9002C1324 /* WeatherNetworkManager.swift */,
+				435D6425270C151F008BE703 /* LocationManager.swift */,
+				A8FB2E27271ED0B6009967E2 /* LocationManagerDelegate.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -229,8 +231,6 @@
 				A8FB2E25271EA3BC009967E2 /* LocationViewController.swift */,
 				A8FB2E1D271E904F009967E2 /* TableViewController.swift */,
 				A8FB2E23271E9515009967E2 /* ButtonController.swift */,
-				435D6425270C151F008BE703 /* LocationManager.swift */,
-				A8FB2E27271ED0B6009967E2 /* LocationManagerDelegate.swift */,
 				A8FB2DEC271D9D28009967E2 /* Delegate */,
 				A818BB22271983C3007C4350 /* TableView */,
 			);
@@ -242,7 +242,7 @@
 			children = (
 				A824B894270452DE009F9193 /* Decoding */,
 				A8FB2DE6271D08D0009967E2 /* TemperatureConverter.swift */,
-				A8FB2E1B271E836B009967E2 /* UserState.swift */,
+				A8FB2E1B271E836B009967E2 /* LocationDataState.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -439,7 +439,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A8FB2E1C271E836B009967E2 /* UserState.swift in Sources */,
+				A8FB2E1C271E836B009967E2 /* LocationDataState.swift in Sources */,
 				A8FB2E24271E9515009967E2 /* ButtonController.swift in Sources */,
 				A8FB2E1E271E904F009967E2 /* TableViewController.swift in Sources */,
 				A84D476027031FBA002C1324 /* EndPoint.swift in Sources */,

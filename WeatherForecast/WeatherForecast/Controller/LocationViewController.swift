@@ -8,7 +8,6 @@
 import UIKit
 
 class LocationViewController: UIViewController {
-
     private let locationManager = LocationManager()
     private let locationManagerDelegate = LocationManagerDelegate()
 
