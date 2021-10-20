@@ -43,7 +43,6 @@ class WeatherDataHolder {
     private init() { }
     
     func generate(_ path: String, _ data: Data) {
-        
         switch path {
         case PathOptions.Paths.forecast.rawValue:
             do {

@@ -54,7 +54,6 @@ class OpenWeatherHeaderView: UITableViewHeaderFooterView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    
     func configureDateAndTemperature() {
         guard let currentWeatherData = WeatherDataHolder.shared.current else {
             print("\(#function)에 들어갈 데이터가 없습니다.")
