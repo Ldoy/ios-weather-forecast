@@ -129,16 +129,6 @@
 			path = AppLifeCycle;
 			sourceTree = "<group>";
 		};
-		436B3DA427031D860069B3AA /* Networking */ = {
-			isa = PBXGroup;
-			children = (
-				A84D475C27031ED4002C1324 /* RequestConfigure */,
-				A84D475B27031ECD002C1324 /* Router */,
-				436B3DA727031DA20069B3AA /* Manager */,
-			);
-			path = Networking;
-			sourceTree = "<group>";
-		};
 		436B3DA727031DA20069B3AA /* Manager */ = {
 			isa = PBXGroup;
 			children = (
@@ -150,7 +140,9 @@
 		436B3DA827031DD10069B3AA /* NetworkLayer */ = {
 			isa = PBXGroup;
 			children = (
-				436B3DA427031D860069B3AA /* Networking */,
+				A84D475C27031ED4002C1324 /* RequestConfigure */,
+				A84D475B27031ECD002C1324 /* Router */,
+				436B3DA727031DA20069B3AA /* Manager */,
 			);
 			path = NetworkLayer;
 			sourceTree = "<group>";
