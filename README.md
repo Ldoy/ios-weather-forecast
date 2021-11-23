@@ -120,11 +120,11 @@
     
 3. 코어로케이션을 통해 사용자의 현재 위치 정보 및 주소정보 구하기  
 - CLLocationManager와 CLLocationManagerDelegate를 통해 사용자의 현재 위치 정보 가져온 후 CLGeocoder를 통해 주소정보를 가져옴
-        <details>
-        <summary> <b> 코드 </b>  </summary>
-        <div markdown="1">
+    <details>
+    <summary> <b> 코드 </b>  </summary>
+    <div markdown="1">
 
-        ```swift
+    ```swift
         //LocatinoManager
         class LocationManager: CLLocationManager {
             func askUserLocation() {
@@ -168,11 +168,11 @@
             .
         }
 
-        ```
+    ```
 
-        </div>
-        </details>
-        <br>
+    </div>
+    </details>
+    <br>
         
 4. URLSession 을 통해 API호출 
     <details>
