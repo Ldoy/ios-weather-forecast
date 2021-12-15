@@ -12,20 +12,20 @@ typealias Location = (latitude: CLLocationDegrees, longitude: CLLocationDegrees)
 
 func requestWeatherData(requestPurpose: RequestPurpose, location: Location?) {
     let sessionDelegate = OpenWeatherSessionDelegate()
-    let networkManager = WeatherNetworkManager()
+    let networkService = WeatherNetworkService()
     
-    networkManager
+    networkService
         .fetchOpenWeatherData(latitudeAndLongitude: location,
                               requestPurpose: .currentWeather,
                               sessionDelegate.session)
     
-    networkManager
+    networkService
         .fetchOpenWeatherData(latitudeAndLongitude: location,
                               requestPurpose: .forecast,
                               sessionDelegate.session)
 }
 
-final class WeatherNetworkManager {
+final class WeatherNetworkService {
     private let router = Router<OpenWeatherAPI>()
     private let apiKey = "9cda367698143794391817f65f81c76e"
     

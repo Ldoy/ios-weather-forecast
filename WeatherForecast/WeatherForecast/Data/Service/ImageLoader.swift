@@ -28,6 +28,7 @@ class ImageCacher: NSCache<NSNumber, UIImage> {
 }
 
 class ImageLoader {
+    
 }
 
 extension ImageLoader {
