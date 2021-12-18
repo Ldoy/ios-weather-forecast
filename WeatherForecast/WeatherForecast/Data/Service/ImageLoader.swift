@@ -7,7 +7,7 @@
 
 import UIKit.UIImage
 
-class ImageCacher: NSCache<NSNumber, UIImage> {
+final class ImageCacher: NSCache<NSNumber, UIImage> {
     static let shared = ImageCacher()
     
     private override init() {
@@ -27,11 +27,7 @@ class ImageCacher: NSCache<NSNumber, UIImage> {
     }
 }
 
-class ImageLoader {
-    
-}
-
-extension ImageLoader {
+final class ImageLoader {
     static func downloadImage(reqeustURL: String?, imageCachingKey: Int, _ completionHandler: @escaping (UIImage) -> ()) {
         
         if let image = ImageCacher.shared.pullImage(forkey: imageCachingKey) {
@@ -44,7 +40,7 @@ extension ImageLoader {
             return
         }
         
-        let task = URLSession.shared.dataTask(with: url) { data, _, _ in
+       let task = URLSession.shared.dataTask(with: url) { data, _, _ in
             guard let data = data else {
                 return
             }

@@ -28,10 +28,10 @@ final class WeatherTableviewDataSource: NSObject, UITableViewDataSource {
                 cell.configure(requestedIcon)
             }
         }
-        
-        let cellHolder = CellHolder(forcastInformation: list)
-        
-        cell.configure(cellHolder)
+//        
+//        let cellHolder = CellHolder(forcastInformation: WeatherDataHolder.shared.forcast?)
+//        
+//        cell.configure(cellHolder)
 
         return cell
     }    

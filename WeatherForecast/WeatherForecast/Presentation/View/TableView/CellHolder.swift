@@ -11,13 +11,13 @@ final class CellHolder {
     private let dateLabelText: String
     private let temperatureText: String
     
-    init(forcastInformation: ForcastInfomation) {
+    init(forcastInformation: FiveDaysForecastData) {
         let dateformatter = DateFormatter.customDateFormatter()
-        let date = Date(timeIntervalSince1970: TimeInterval(forcastInformation.date))
+        let date = Date(timeIntervalSince1970: TimeInterval(forcastInformation.list.first?.date ?? .zero))
         let formattedDate = dateformatter.string(from: date)
         self.dateLabelText = formattedDate
 
-        let formattedTemperature = TemperatureConverter(celciusTemperature: forcastInformation.main.temperature).convertedTemperature
+        let formattedTemperature = TemperatureConverter(celciusTemperature: forcastInformation.list.first?.main.temperature ?? .zero).convertedTemperature
         self.temperatureText = "\(formattedTemperature)°"
     }
     

@@ -10,63 +10,66 @@ import CoreLocation.CLLocationManager
 
 typealias Location = (latitude: CLLocationDegrees, longitude: CLLocationDegrees)
 
-func requestWeatherData(requestPurpose: RequestPurpose, location: Location?) {
-    let sessionDelegate = OpenWeatherSessionDelegate()
-    let networkService = WeatherNetworkService()
-    
-    networkService
-        .fetchOpenWeatherData(latitudeAndLongitude: location,
-                              requestPurpose: .currentWeather,
-                              sessionDelegate.session)
-    
-    networkService
-        .fetchOpenWeatherData(latitudeAndLongitude: location,
-                              requestPurpose: .forecast,
-                              sessionDelegate.session)
+protocol NetworkService: AnyObject {
+    func request(with endPoint: EndPointable,
+                 and session: URLSession)
+    func cancel()
 }
 
-final class WeatherNetworkService {
-    private let router = Router<OpenWeatherAPI>()
+final class WeatherNetworkService: NetworkService {
+    private var task: URLSessionDataTask?
     private let apiKey = "9cda367698143794391817f65f81c76e"
     
-    func fetchOpenWeatherData(latitudeAndLongitude: Location?,
-                              requestPurpose: RequestPurpose,
-                              _ session: URLSession) {
-        let api = buildApi(location: latitudeAndLongitude,
-                           requestPurpose: requestPurpose)
-        router.request(with: api, and: session)
-    }
-    
-    private func buildApi(location: Location?,
-                          requestPurpose: RequestPurpose) -> OpenWeatherAPI {
-        let query = maekQueryItems(requestPurpose, location)
-        let path = maekPathComponents(requestPurpose)
-        let api = OpenWeatherAPI(requestPurpose: requestPurpose,
-                                 httpMethod: .get,
-                                 urlElements: .with(query,and: path))
-        return api
-    }
-    
-    private func maekQueryItems(_ requestPurpose: RequestPurpose,
-                                _ location: Location?) -> QueryItems? {
-        switch requestPurpose {
-        case .currentWeather, .forecast:
-            guard let location = location else {
-                return nil
-            }
-            
-            return ["lat": location.latitude ,
-                    "lon": location.longitude,
-                    "appid": self.apiKey]
+    func request(with endPoint: EndPointable,
+                 and session: URLSession) {
+        do {
+            let request = try self.buildRequest(from: endPoint)
+            task = session.dataTask(with: request)
+            self.task?.resume()
+        } catch {
+            print(error)
         }
     }
     
-    private func maekPathComponents(_ requestPurpose: RequestPurpose) -> PathComponents {
-        switch requestPurpose {
-        case .currentWeather:
-            return PathOptions.current.fullPaths
-        case .forecast:
-            return PathOptions.forecast.fullPaths
+    func cancel() {
+        self.task?.cancel()
+    }
+    
+    private func buildRequest(from endPoint: EndPointable) throws -> URLRequest {
+        // url 만들기 
+        guard let url = generateURL(from: endPoint) else {
+            throw NetworkError.invalidURL
         }
+        let request = URLRequest(url: url)
+
+        return request
+    }
+    
+    private func generateURL(from endPoint: EndPointable) -> URL? {
+        let baseURL = "api.openweathermap.org"
+        let url = baseURL + endPoint.path.rawValue
+        
+        guard let url = URL(string: url),
+              var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false) else {
+            print(#function, "에서 오류가 생겼습니다.")
+            return nil
+        }
+        
+        if let queryItems = endPoint.queryItems {
+            return insert(to: &urlComponents, queryItems)
+        } else {
+            return url
+        }
+    }
+    
+    private func insert(to urlComponents: inout URLComponents, _ queryItems: QueryItems) -> URL? {
+        urlComponents.queryItems = [URLQueryItem]()
+        
+        for (key, value) in queryItems {
+            let queryItem = URLQueryItem(name: key, value: "\(value ?? "🥲")")
+            urlComponents.queryItems?.append(queryItem)
+        }
+        print(urlComponents.url?.description)
+        return urlComponents.url
     }
 }

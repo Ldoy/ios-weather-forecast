@@ -34,9 +34,9 @@ final class LocationManagerDelegate: NSObject, CLLocationManagerDelegate {
         if let manager = manager as? LocationManager {
             manager.validLocation =  Location(latitude, longitude)
         }
-        
-        requestWeatherData(requestPurpose: .currentWeather, location: Location(currentLocation.coordinate.latitude, currentLocation.coordinate.longitude))
-        requestWeatherData(requestPurpose: .forecast, location: Location(currentLocation.coordinate.latitude, currentLocation.coordinate.longitude))
+//        
+//        requestWeatherData(endPoint: .currentWeather, location: Location(currentLocation.coordinate.latitude, currentLocation.coordinate.longitude))
+//        requestWeatherData(endPoint: .forecast5Days3Hours, location: Location(currentLocation.coordinate.latitude, currentLocation.coordinate.longitude))
     }
     
     func locationManager(_ manager: CLLocationManager,

@@ -71,9 +71,9 @@ final class TableViewController: UIViewController {
             case .success(let location):
                 self.deleteTextField(alert.textFields)
                 
-                requestWeatherData(requestPurpose: .currentWeather,
-                                   location: location)
-                
+//                requestWeatherData(endPoint: .currentWeather,
+//                                   location: location)
+//                
                 // 로케이션델리게이트의 마지막 위치 바꿔주기
             }
         })
@@ -113,8 +113,9 @@ final class TableViewController: UIViewController {
                 self.tableView.delegate = self.emptyDelegate
                 self.tableView.dataSource = self.emptyDataSource
             case .success(let location):
-                requestWeatherData(requestPurpose: .forecast,
-                                   location: location)
+                break
+//                requestWeatherData(endPoint: .forecast5Days3Hours,
+//                                   location: location)
             }
         })
         
